@@ -3,7 +3,13 @@
 [![Build & Test (PHP 8.2)](https://github.com/shipsaas/laravel-jwks/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/laravel-jwks/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/shipsaas/laravel-jwks/graph/badge.svg?token=c0HREpn8kp)](https://codecov.io/gh/shipsaas/laravel-jwks)
 
-TBA
+Laravel UniqueRequestIdLogger enables the tracing of requests across servers
+by marking each request with a unique ID 🆔.
+
+Skyrocket the production debugging ⚒️.
+
+Additionally, UniqueRequestIdLogger solves the **missing logs** problem when you have a huge amount of traffic 😎. 
+Making production logs more reliable and engineers won't have to scream "I can't find the logs" 🔥.
 
 ## Supports
 - Laravel 10+
@@ -17,7 +23,9 @@ Install the library:
 composer require shipsaas/laravel-unique-request-id-logger
 ```
 
-## Usage
+## Usage (Minimalism)
+
+Note: Minimalism way injects the UniqueRequestID into your application, it won't have any improvement for missing logs issue.
 
 ### Inject Unique Request Id Logger Processor
 
@@ -54,6 +62,26 @@ Register the middleware in the global one, so that you won't miss any request.
 ### Play
 
 Now that you have everything, hit some requests and try it out 😎.
+
+## Usage (Advanced)
+
+We ship a new Logger driver called `shipsaas-logger` which handles:
+
+- Create log file based on the requestId, e.g.: `7a559daf-f1fe-4a97-8eb8-40d0907c986b.log`
+- Write request-based logs there
+- A fallback to the `daily` driver, if `requestId` is not presented
+
+Thus, it fixes the missing logs issue because we have **independent log files** and not yolo-write into 1 file.
+
+### Set up `logging.php`
+
+TBA
+
+### Update .env
+aa
+
+### Play
+aa
 
 ## Testing
 
