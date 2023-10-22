@@ -1,0 +1,61 @@
+{
+    "name": "shipsaas/laravel-unique-request-id-logger",
+    "type": "library",
+    "version": "1.0.0",
+    "description": "Laravel UniqueRequestIdLogger enables the tracing of requests across servers by marking each request with a unique ID. Skyrocket the production debugging.",
+    "keywords": [
+        "laravel library",
+        "laravel unique request id logger",
+        "debugging",
+        "development",
+        "laravel"
+    ],
+    "authors": [
+        {
+            "name": "Phat Tran (Seth Phat)",
+            "email": "me@sethphat.com",
+            "homepage": "https://github.com/sethsandaru",
+            "role": "Sr.SWE"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.1|^8.2",
+        "laravel/framework": "^10|dev-master"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^v1.20.0",
+        "mockery/mockery": "^1.5.1",
+        "phpunit/phpunit": "^10",
+        "orchestra/testbench": "^8",
+        "phpunit/php-code-coverage": "^10",
+        "friendsofphp/php-cs-fixer": "^3.10"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ShipSaasUniqueRequestLogger\\ShipSaasUniqueRequestLoggerServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "ShipSaasUniqueRequestLogger\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ShipSaasUniqueRequestLogger\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test-coverage": [
+            "@php vendor/bin/phpunit --coverage-clover coverage.xml"
+        ],
+        "test": [
+            "@php vendor/bin/phpunit"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
