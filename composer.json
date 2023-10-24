@@ -1,11 +1,12 @@
 {
-    "name": "shipsaas/laravel-unique-request-id-logger",
+    "name": "shipsaas/shipsaas-logger",
     "type": "library",
     "version": "1.0.0",
-    "description": "Laravel UniqueRequestIdLogger enables the tracing of requests across servers by marking each request with a unique ID. Skyrocket the production debugging.",
+    "description": "Laravel ShipSaasLogger enables the tracing of requests across servers by marking each request with a unique ID. Skyrocket the production debugging.",
     "keywords": [
         "laravel library",
         "laravel unique request id logger",
+        "laravel shipsaas logger",
         "debugging",
         "development",
         "laravel"

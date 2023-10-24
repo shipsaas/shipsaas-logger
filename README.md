@@ -1,14 +1,14 @@
-# ShipSaaS - Laravel Unique Request ID Logger
+# ShipSaaS - Laravel Unique Request ID Logger - ShipSaaS Logger
 
 [![Build & Test (PHP 8.2)](https://github.com/shipsaas/laravel-jwks/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/laravel-jwks/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/shipsaas/laravel-jwks/graph/badge.svg?token=c0HREpn8kp)](https://codecov.io/gh/shipsaas/laravel-jwks)
 
-Laravel UniqueRequestIdLogger enables the tracing of requests across servers
-by marking each request with a unique ID 🆔.
+Laravel ShipSaasLogger enables the tracing of requests across servers
+by marking each request with a unique ID 🆔 for every log record of the given request.
 
-Skyrocket the production debugging ⚒️.
+Skyrocket your production debugging ⚒️.
 
-Additionally, UniqueRequestIdLogger solves the **missing logs** problem when you have a huge amount of traffic 😎. 
+Additionally, ShipSaasLogger solves the **missing logs** problem when you have a huge amount of traffic 😎. 
 Making production logs more reliable and engineers won't have to scream "I can't find the logs" 🔥.
 
 ## Supports
@@ -20,12 +20,10 @@ Making production logs more reliable and engineers won't have to scream "I can't
 Install the library:
 
 ```bash
-composer require shipsaas/laravel-unique-request-id-logger
+composer require shipsaas/shipsaas-logger
 ```
 
 ## Usage (Minimalism)
-
-Note: Minimalism way injects the UniqueRequestID into your application, it won't have any improvement for missing logs issue.
 
 ### Inject Unique Request Id Logger Processor
 
@@ -42,26 +40,11 @@ public function boot(): void
 }
 ```
 
-Additionally, you can pass the `boolean` for the first parameter to indicate if you want to have JSON-structured logs.
-
-### Registering Middleware
-
-```php
-// Http/Kernel.php
-
-use ShipSaasUniqueRequestLogger\GenerateUniqueRequestId;
-
-protected $middleware = [
-    // ...
-    GenerateUniqueRequestId::class,  
-];
-```
-
-Register the middleware in the global one, so that you won't miss any request.
-
 ### Play
 
 Now that you have everything, hit some requests and try it out 😎.
+
+Note: Minimalism way injects the UniqueRequestID generation into your application, it won't have any improvement for missing logs issue.
 
 ## Usage (Advanced)
 
@@ -69,19 +52,38 @@ We ship a new Logger driver called `shipsaas-logger` which handles:
 
 - Create log file based on the requestId, e.g.: `7a559daf-f1fe-4a97-8eb8-40d0907c986b.log`
 - Write request-based logs there
-- A fallback to the `daily` driver, if `requestId` is not presented
+- A fallback to the default log file, if `requestId` is not presented
 
 Thus, it fixes the missing logs issue because we have **independent log files** and not yolo-write into 1 file.
 
-### Set up `logging.php`
+And last step, tell Sumologic, Cloudwatch, ... sync your logs folder 🔥. All your logs will be on the cloud.
 
-TBA
+### Set up `config/logging.php`
+
+Add a new channel called `shipsaas-logger`
+
+```php
+'shipsaas-logger' => [
+    'driver' => 'shipsaas-logger',
+    'path' => storage_path('logs/requests/laravel.log'), // can change to your desired path
+    'default_log_file' => storage_path('logs/laravel.log'), // can change to your desired path
+    'id-type' => 'ulid', // uuid, orderedUuid, ulid
+    'use_json_format' => false, // set to true to write log as JSON
+],
+```
 
 ### Update .env
-aa
+
+Change the `LOG_CHANNEL` to `shipsaas-logger` 
+
+```dotenv
+LOG_CHANNEL=shipsaas-logger
+```
 
 ### Play
-aa
+Now that you have everything, hit some requests and try it out 😎.
+
+And congrats, no more "missing logs" pain for your app 😉.
 
 ## Testing
 
