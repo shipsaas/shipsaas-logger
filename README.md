@@ -1,4 +1,4 @@
-# ShipSaaS - Laravel Unique Request ID Logger - ShipSaaS Logger
+# ShipSaaS Logger - Laravel Unique Request ID Logger
 
 [![Build & Test (PHP 8.2)](https://github.com/shipsaas/shipsaas-logger/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/shipsaas-logger/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/shipsaas/laravel-jwks/graph/badge.svg?token=c0HREpn8kp)](https://codecov.io/gh/shipsaas/laravel-jwks)
@@ -56,9 +56,9 @@ We ship a new Logger driver called `shipsaas-logger` which handles:
 - Write request-based logs there
 - A fallback to the default log file, if `requestId` is not presented
 
-Thus, it fixes the missing logs issue because we have **independent log files** and not yolo-write into 1 file (which will mess up the logs when having high traffic)
+Thus, it fixes the missing logs issue because we have **independent log files** and not yolo-write into 1 file (which will mess up the logs when having high traffic) 🚀
 
-And last step, tell Sumologic, Cloudwatch, ... sync your logs folder 🔥. All your logs will be on the cloud.
+And the last step, tell Sumologic (or Cloudwatch, etc.) to sync your logs folder 🔥. All your logs will be on the cloud.
 
 ### Set up `config/logging.php`
 
