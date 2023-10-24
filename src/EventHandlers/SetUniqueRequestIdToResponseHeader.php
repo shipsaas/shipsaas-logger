@@ -12,14 +12,15 @@ class SetUniqueRequestIdToResponseHeader
     {
         $requestId = Container::getInstance()
             ->make('request')
-            ->input(GlobalConstants::REQUEST_ID_HEADER);
+            ->input(GlobalConstants::REQUEST_ID_ACCESS_KEY);
         if (!$requestId) {
             return;
         }
 
         $responsePrepared->response->headers->set(
             GlobalConstants::REQUEST_ID_HEADER,
-            $requestId
+            $requestId,
+            true
         );
     }
 }
