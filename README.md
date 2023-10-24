@@ -1,6 +1,6 @@
 # ShipSaaS - Laravel Unique Request ID Logger - ShipSaaS Logger
 
-[![Build & Test (PHP 8.2)](https://github.com/shipsaas/laravel-jwks/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/laravel-jwks/actions/workflows/build.yml)
+[![Build & Test (PHP 8.2)](https://github.com/shipsaas/shipsaas-logger/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/shipsaas-logger/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/shipsaas/laravel-jwks/graph/badge.svg?token=c0HREpn8kp)](https://codecov.io/gh/shipsaas/laravel-jwks)
 
 Laravel ShipSaasLogger enables the tracing of requests across servers
@@ -10,6 +10,8 @@ Skyrocket your production debugging ⚒️.
 
 Additionally, ShipSaasLogger solves the **missing logs** problem when you have a huge amount of traffic 😎. 
 Making production logs more reliable and engineers won't have to scream "I can't find the logs" 🔥.
+
+![ShipSaaS Logger](.github%2Fshipsaas-logger.png)
 
 ## Supports
 - Laravel 10+
