@@ -3,6 +3,7 @@
 namespace ShipSaasUniqueRequestLogger;
 
 use Illuminate\Foundation\Console\AboutCommand;
+use Illuminate\Http\Request;
 use Illuminate\Log\LogManager;
 use Illuminate\Routing\Events\ResponsePrepared;
 use Illuminate\Routing\Events\Routing;
@@ -32,6 +33,14 @@ class ShipSaasUniqueRequestLoggerServiceProvider extends ServiceProvider
 
     public function register(): void
     {
+        Request::macro('setRequestId', function (string $uniqueId) {
+            $this->requestId = $uniqueId;
+        });
+
+        Request::macro('getRequestId', function () {
+            return $this->requestId ?? null;
+        });
+
         $this->app->afterResolving(LogManager::class, function (LogManager $manager) {
             $manager->extend('shipsaas-logger', function ($laravel, array $config) {
                 /** @var LogManager $this */

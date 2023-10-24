@@ -2,17 +2,15 @@
 
 namespace ShipSaasUniqueRequestLogger\EventHandlers;
 
-use Illuminate\Container\Container;
 use Illuminate\Routing\Events\ResponsePrepared;
 use ShipSaasUniqueRequestLogger\Constants\GlobalConstants;
+use ShipSaasUniqueRequestLogger\Helpers\Helpers;
 
 class SetUniqueRequestIdToResponseHeader
 {
     public function handle(ResponsePrepared $responsePrepared): void
     {
-        $requestId = Container::getInstance()
-            ->make('request')
-            ->input(GlobalConstants::REQUEST_ID_ACCESS_KEY);
+        $requestId = Helpers::getUniqueRequestId();
         if (!$requestId) {
             return;
         }

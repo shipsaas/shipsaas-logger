@@ -15,9 +15,8 @@ class GenerateUniqueRequestId
         $uniqueId = $request->header(GlobalConstants::REQUEST_ID_HEADER)
             ?: $this->generateId();
 
-        $request->merge([
-            GlobalConstants::REQUEST_ID_ACCESS_KEY => $uniqueId,
-        ]);
+        // we have a marco function bound to the Request facade
+        $request->setRequestId($uniqueId);
     }
 
     private function generateId(): string

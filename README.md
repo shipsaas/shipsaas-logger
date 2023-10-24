@@ -42,9 +42,9 @@ public function boot(): void
 
 ### Play
 
-Now that you have everything, hit some requests and try it out 😎.
+Now that you have injected ShipSaaS Logger, hit some requests and try it out 😎.
 
-Note: Minimalism way injects the UniqueRequestID generation into your application, it won't have any improvement for missing logs issue.
+Note: Minimalism way only injects the UniqueRequestID generation into your application, it won't have any improvement for missing logs issue.
 
 ## Usage (Advanced)
 
@@ -54,7 +54,7 @@ We ship a new Logger driver called `shipsaas-logger` which handles:
 - Write request-based logs there
 - A fallback to the default log file, if `requestId` is not presented
 
-Thus, it fixes the missing logs issue because we have **independent log files** and not yolo-write into 1 file.
+Thus, it fixes the missing logs issue because we have **independent log files** and not yolo-write into 1 file (which will mess up the logs when having high traffic)
 
 And last step, tell Sumologic, Cloudwatch, ... sync your logs folder 🔥. All your logs will be on the cloud.
 

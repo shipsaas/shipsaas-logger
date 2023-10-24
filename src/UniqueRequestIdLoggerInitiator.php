@@ -8,7 +8,7 @@ use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use ShipSaasUniqueRequestLogger\Processor\UniqueRequestIdProcessor;
 
-class UniqueRequestIdLoggerInitiator
+final class UniqueRequestIdLoggerInitiator
 {
     public static function init(): void
     {
