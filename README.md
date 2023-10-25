@@ -1,7 +1,8 @@
 # ShipSaaS Logger - Laravel Unique Request ID Logger
 
 [![Build & Test (PHP 8.2)](https://github.com/shipsaas/shipsaas-logger/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/shipsaas-logger/actions/workflows/build.yml)
-[![codecov](https://codecov.io/gh/shipsaas/laravel-jwks/graph/badge.svg?token=c0HREpn8kp)](https://codecov.io/gh/shipsaas/laravel-jwks)
+[![codecov](https://codecov.io/gh/shipsaas/shipsaas-logger/graph/badge.svg?token=1cWfW8UeUh)](https://codecov.io/gh/shipsaas/shipsaas-logger)
+
 
 Laravel ShipSaasLogger enables the tracing of requests across servers
 by marking each request with a unique ID 🆔 for every log record of the given request.
@@ -25,30 +26,7 @@ Install the library:
 composer require shipsaas/shipsaas-logger
 ```
 
-## Usage (Minimalism)
-
-### Inject Unique Request Id Logger Processor
-
-By simply putting this piece of code into your `AppServiceProvider`:
-
-```php
-// AppServiceProvider.php
-
-use ShipSaasUniqueRequestLogger\UniqueRequestIdLoggerInitiator;
-
-public function boot(): void
-{
-    $this->app->booted(fn () => UniqueRequestIdLoggerInitiator::init());
-}
-```
-
-### Play
-
-Now that you have injected ShipSaaS Logger, hit some requests and try it out 😎.
-
-Note: Minimalism way only injects the UniqueRequestID generation into your application, it won't have any improvement for missing logs issue.
-
-## Usage (Advanced)
+## Usage
 
 We ship a new Logger driver called `shipsaas-logger` which handles:
 
@@ -62,7 +40,7 @@ And the last step, tell Sumologic (or Cloudwatch, etc.) to sync your logs folder
 
 ### Set up `config/logging.php`
 
-Add a new channel called `shipsaas-logger`
+Add a new channel called `shipsaas-logger` and change the configuration based on your needs
 
 ```php
 'shipsaas-logger' => [
@@ -86,6 +64,29 @@ LOG_CHANNEL=shipsaas-logger
 Now that you have everything, hit some requests and try it out 😎.
 
 And congrats, no more "missing logs" pain for your app 😉.
+
+## Usage (Minimalism)
+
+### Inject Unique Request Id Logger Processor
+
+By simply putting this piece of code into your `AppServiceProvider`:
+
+```php
+// AppServiceProvider.php
+
+use ShipSaasUniqueRequestLogger\UniqueRequestIdLoggerInitiator;
+
+public function boot(): void
+{
+    $this->app->booted(fn () => UniqueRequestIdLoggerInitiator::init());
+}
+```
+
+### Play
+
+Now that you have injected ShipSaaS Logger, hit some requests and try it out 😎.
+
+Note: The Minimalism way only injects the UniqueRequestID generation into your application, it **won't have any** improvement for missing logs issue.
 
 ## Testing
 
