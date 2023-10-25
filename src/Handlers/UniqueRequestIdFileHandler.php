@@ -30,7 +30,7 @@ class UniqueRequestIdFileHandler extends StreamHandler
         parent::__construct($filename, $level, $bubble, $filePermission, $useLocking);
     }
 
-    public function getFullFilePath(string $requestId): string
+    protected function getFullFilePath(string $requestId): string
     {
         $fileInfo = pathinfo($this->filename);
         $fileName = $requestId . '.' . ($fileInfo['extension'] ?? '.log');
