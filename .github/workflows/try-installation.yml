@@ -1,0 +1,31 @@
+name: Try Install Package (Laravel 10)
+
+on:
+    pull_request:
+        branches:
+            - 'main'
+        types: [ opened, synchronize, reopened, ready_for_review ]
+    push:
+        branches:
+            - 'main'
+
+jobs:
+    try_installation:
+        strategy:
+            fail-fast: false
+            matrix:
+                version: [ '^10.0' ]
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Setup PHP with coverage driver
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.2
+                    coverage: pcov
+
+            -   name: Setup and install package on Laravel
+                if: success()
+                run: |
+                    composer create-project laravel/laravel:${{ matrix.version }} laravel
+                    cd laravel
+                    composer require shipsaas/shipsaas-logger
