@@ -36,7 +36,8 @@ We ship a new Logger driver called `shipsaas-logger` which handles:
 
 Thus, it fixes the missing logs issue because we have **independent log files** and not yolo-write into 1 file (which will mess up the logs when having high traffic) 🚀
 
-And the last step, tell Sumologic (or Cloudwatch, etc.) to sync your logs folder 🔥. All your logs will be on the cloud.
+Nowadays, we can just tell Sumologic (or Cloudwatch, DataDog, etc.) to sync your log folder (a whole folder) 🔥.
+All your logs will be synced on the cloud.
 
 ### Set up `config/logging.php`
 
@@ -63,7 +64,29 @@ LOG_CHANNEL=shipsaas-logger
 ### Play
 Now that you have everything, hit some requests and try it out 😎.
 
-And congrats, no more "missing logs" pain for your app 😉.
+```php
+class TransferController extends BaseController
+{
+    public function transfer(): JsonResponse
+    {
+        Log::info('begin transfer', [
+            'amount' => ...,
+            'recipient' => ...,
+        ]); // this log will have uniqueRequestId
+        
+        // ...
+        
+        
+        Log::info('transferred', [
+            'amount' => ...,
+            'recipient' => ...,
+            'trasaction_id' => ...,
+        ]); // this log will have uniqueRequestId
+    }
+}
+```
+
+And also congrats, no more "missing logs" pain for your app 😉.
 
 ## Usage (Minimalism)
 
